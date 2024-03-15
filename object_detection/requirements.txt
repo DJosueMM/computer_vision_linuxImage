@@ -1,0 +1,12 @@
+openvino-dev>=2024.0.0
+tensorflow
+opencv-python
+requests
+tqdm
+ipywidgets
+numpy
+opencv-python
+tqdm
+requests
+IPython
+
