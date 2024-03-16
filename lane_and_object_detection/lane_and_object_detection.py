@@ -409,7 +409,7 @@ def process_image(image):
 
 
 # Definir la fuente de entrada para el pipeline (puede ser una cámara o un archivo de video)
-USE_WEBCAM = False
+USE_WEBCAM = True
 video_file = "challenge.mp4"
 cam_id = 0
 
