@@ -464,9 +464,8 @@ while True:
         break
 
 # Liberar los recursos y cerrar las ventanas
+# Liberar los recursos y cerrar las ventanas
 cap.release()
+out.release()
 cv2.destroyAllWindows()
-
-
-
 
