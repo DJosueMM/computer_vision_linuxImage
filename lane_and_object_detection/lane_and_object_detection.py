@@ -127,7 +127,7 @@ colors = cv2.applyColorMap(
 
 ##FUNCIONES
 
-def process_results(frame, results, thresh=0.6):
+def process_results(frame, results, thresh=0.4):
     # The size of the original frame.
     h, w = frame.shape[:2]
     # The 'results' variable is a [1, 1, 100, 7] tensor.
@@ -147,7 +147,7 @@ def process_results(frame, results, thresh=0.6):
     # See https://paperswithcode.com/method/non-maximum-suppression
     # This algorithm returns indices of objects to keep.
     indices = cv2.dnn.NMSBoxes(
-        bboxes=boxes, scores=scores, score_threshold=thresh, nms_threshold=0.6
+        bboxes=boxes, scores=scores, score_threshold=thresh, nms_threshold=0.4
     )
 
     # If there are no boxes.
@@ -384,12 +384,12 @@ def process_image(image):
 
     camera_center = (left_fitx[-1] + right_fitx[-1])/2
     center_diff = (camera_center-warped.shape[1]/2)*xm_per_pix
-    side_pos = 'left'
+    side_pos = 'a la izquierda'
     if center_diff <= 0:
-        side_pos = 'right'
+        side_pos = 'a la derecha'
 
-    cv2.putText(result,'Radius of curvature = '+str(round(curverad,3))+'(m)',(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
-    cv2.putText(result,'Vehicle is '+str(abs(round(center_diff,3)))+'m '+side_pos+' of center',(50,100), cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
+    cv2.putText(result,'Radio de curvatura = '+str(round(curverad,3))+'(m)',(50,45),cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),2)
+    cv2.putText(result,'Esta '+str(abs(round(center_diff,3)))+'m '+side_pos+' del centro del carril',(50,65), cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),2)
 
     return result
 
@@ -409,8 +409,8 @@ def process_image(image):
 
 
 # Definir la fuente de entrada para el pipeline (puede ser una cámara o un archivo de video)
-USE_WEBCAM = True
-video_file = "challenge.mp4"
+USE_WEBCAM = False
+video_file = "project_video.mp4"
 cam_id = 0
 
 source = cam_id if USE_WEBCAM else video_file
