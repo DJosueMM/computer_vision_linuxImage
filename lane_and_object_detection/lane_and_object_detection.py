@@ -7,7 +7,6 @@ import numpy as np
 import openvino as ov
 import pickle
 from pathlib import Path
-from openvino.tools.mo.front import tf as ov_tf_front
 
 class tracker():
 
@@ -107,16 +106,11 @@ input_layer.any_name, output_layer.any_name
 classes = [
     "background", "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train",
     "truck", "boat", "traffic light", "fire hydrant", "street sign", "stop sign",
-    "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant",
-    "bear", "zebra", "giraffe", "hat", "backpack", "umbrella", "shoe", "eye glasses",
-    "handbag", "tie", "suitcase", "frisbee", "sports ball", "kite",
-    "baseball bat", "baseball glove", "skateboard", "tennis racket", "bottle",
-    "plate", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple",
-    "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair",
-    "couch", "potted plant", "bed", "mirror", "dining table", "window", "desk", "toilet",
-    "door", "tv", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven",
-    "toaster", "sink", "refrigerator", "blender", "book", "clock", "vase", "scissors",
-    "teddy bear", "hair drier", "toothbrush", "hair brush"
+    "parking meter", "bench", "cat", "dog", "horse", "sheep", "cow", "elephant",
+    "bear", "zebra", "giraffe", "shoe", "sports ball", "skateboard", "bottle",
+    "chair", "couch", "potted plant", "desk", "door", "tv", "laptop", "mouse", 
+    "cell phone", "book", "clock", "vase", "scissors"
+    
 ]
 
 # Colors for the classes above (Rainbow Color Map).
@@ -407,7 +401,7 @@ def process_image(image):
 ## MAIN
 
 
-
+#######ENTRADA
 # Definir la fuente de entrada para el pipeline (puede ser una cámara o un archivo de video)
 USE_WEBCAM = False
 video_file = "project_video.mp4"
@@ -423,6 +417,7 @@ if not cap.isOpened():
     print("Error al abrir la fuente de video.")
     exit()
     
+########SALIDA
 # Configuración para guardar el video procesado
 output_path = "output_video.mp4"
 fps = int(cap.get(cv2.CAP_PROP_FPS))
@@ -463,7 +458,6 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# Liberar los recursos y cerrar las ventanas
 # Liberar los recursos y cerrar las ventanas
 cap.release()
 out.release()
