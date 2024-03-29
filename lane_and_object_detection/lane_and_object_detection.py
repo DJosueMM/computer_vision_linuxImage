@@ -107,9 +107,7 @@ classes = [
     "background", "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train",
     "truck", "boat", "traffic light", "fire hydrant", "street sign", "stop sign",
     "parking meter", "bench", "cat", "dog", "horse", "sheep", "cow", "elephant",
-    "bear", "zebra", "giraffe", "shoe", "sports ball", "skateboard", "bottle",
-    "chair", "couch", "potted plant", "desk", "door", "tv", "laptop", "mouse", 
-    "cell phone", "book", "clock", "vase", "scissors"
+    "bear"
     
 ]
 
@@ -164,7 +162,7 @@ def draw_boxes(frame, boxes):
         # Draw a label name inside the box.
         cv2.putText(
             img=frame,
-            text=f"{classes[label]} {score:.2f}",
+            text=f"{classes[label]}",
             org=(box[0] + 10, box[1] + 30),
             fontFace=cv2.FONT_HERSHEY_COMPLEX,
             fontScale=frame.shape[1] / 1000,
@@ -298,7 +296,7 @@ def process_image(image):
     preprocessImage[((gradx==1)&(grady==1)|(c_binary==1))] = 255
 
     img_size = (img.shape[1], img.shape[0])
-    bot_width = .75 #changed from .76
+    bot_width = .74 #changed from .76
     mid_width = .1 #changed this value - seemed to work a lot better than 0.08 
     height_pct = .62
     bottom_trim = .935
@@ -404,7 +402,8 @@ def process_image(image):
 #######ENTRADA
 # Definir la fuente de entrada para el pipeline (puede ser una cámara o un archivo de video)
 USE_WEBCAM = False
-video_file = "project_video.mp4"
+video_file = input("Por favor, ingrese el nombre del archivo de video (incluya la extensión, por ejemplo, video.mp4): ")
+
 cam_id = 0
 
 source = cam_id if USE_WEBCAM else video_file
@@ -419,7 +418,7 @@ if not cap.isOpened():
     
 ########SALIDA
 # Configuración para guardar el video procesado
-output_path = "output_video.mp4"
+output_path = 'output_' + video_file
 fps = int(cap.get(cv2.CAP_PROP_FPS))
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
