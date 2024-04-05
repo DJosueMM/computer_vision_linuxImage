@@ -299,16 +299,16 @@ def process_image(image):
         
         #TABLA DE VALORES YA PROBADOS
         #                                project_video.mp4    sol.mp4    test_video_1.mp4   tunel.mp4  que.mp4   forest.mp4
-        #    bot_width                   .75                  .552        .56               .4          .547     .432 
-        #    mid_width                   .1                   .165        .12               .1          .038     .078
-        #    height_pct                  .62                  .26         .68               .68         .53      .678
-        #    bottom_trim                 .935                 .70         .1                .1          .935     .935 
+        #    bot_width                   .75                  .552        .56               .392        .547     .432 
+        #    mid_width                   .1                   .165        .12               .118        .038     .078
+        #    height_pct                  .62                  .26         .68               .70         .53      .678
+        #    bottom_trim                 .935                 .70         .1                .935        .935     .935 
         
         
-        bot_width = .432 
-        mid_width = .078
-        height_pct = .678
-        bottom_trim = .935  
+        bot_width = .56   
+        mid_width = .12
+        height_pct = .68
+        bottom_trim = .999
         
         src = np.float32([[img.shape[1]*(.5-mid_width/2),img.shape[0]*height_pct],[img.shape[1]*(.5+mid_width/2),img.shape[0]*height_pct],
                           [img.shape[1]*(.5+bot_width/2),img.shape[0]*bottom_trim],[img.shape[1]*(.5-bot_width/2),img.shape[0]*bottom_trim]])
@@ -450,7 +450,7 @@ window_height = 1080
 cv2.namedWindow('Frame', cv2.WINDOW_NORMAL)
 
 # Define el tamaño de la ventana
-cv2.resizeWindow('Frame', window_width, window_height)
+#cv2.resizeWindow('Frame', window_width, window_height)
 
 while True:
       
